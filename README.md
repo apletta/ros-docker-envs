@@ -9,29 +9,32 @@ docker-compose -v
 
 To interact with GUI applications, visit the following link in your web browser: http://localhost:8080/vnc_auto.html
 
-
 ### To use Docker:
-1. Enter top level of repository.
-2. Build the Docker services.
+1. Clone this repository to the same file hierarchy as the other files/directories you would like to use it with (i.e. should be in the same file tree location as the root of files you would like to work with).
+- This image uses volumes so the changes you make while in the container will persist outside the container and after you close the docker image. Changes made outside the container will also appear in the container. The container will be able to access all children files/directories as the location where the repository is cloned (from inside the container); use wisely! For more information, see the [Docker volumes documentation](https://docs.docker.com/storage/volumes/).
+2. Enter top level of this repository.
+3. Build the Docker services. This will take a little while the first time you run it, but subsequent executions should be much faster. 
 ```
 docker-compose build
 ```
-3. Bring services up, in detached mode.
+4. Bring services up, in detached mode.
 ```
 docker-compose up -d
 ```
-4. Enter the Docker container.
+5. Enter the Docker container.
 ```
 docker-compose exec rosenv zsh
 ```
-5. Do work in container. When finished, enter `exit` to leave the container.
-6. When done working, bring the services down (this is technically optional but can be less resource intensive for your host machine).
+6. Do work in container. When finished, enter `exit` to leave the container. Note that all "file" work will persist, but package installations will not (i.e. you can still install packages in the container, but they will not remain between down/up cycles. To make the packages persist, add them to the dockerfile and re-build).
+7. When done working, bring the services down (this is technically optional but can be less resource intensive for your host machine).
 ```
 docker-compose down
 ```
 
-To bring services back up again, start at step 3.
+To bring services back up again, start at step 4. Note that for changes to the dockerfile to take effect, you will need to re-run step 3.
 
 ### Other notes:
-- To completely remove all docker related files from your system (e.g. to clear up resources), use `docker system prune -a --volumes`. Note that this will also clear the cache, so you will need to re-build the image afterwards. See the Docker documentation for more information about [pruning to reclaim space](https://docs.docker.com/config/pruning/), and [managing file system storage for Mac](https://docs.docker.com/desktop/mac/space/).
+- Add new system packages to the `rosenv.dockerfile`, or make a new custom dockerfile and reference it from the desired service in the `docker-compose.yml` file.
 - You can check the status of containers using `docker-compose ps`, or with the desktop app.
+- To completely remove all docker related files from your system (e.g. to clear up resources), use `docker system prune -a --volumes`. Note that this will also clear the cache, so you will need to re-build the image afterwards. See the Docker documentation for more information about [pruning to reclaim space](https://docs.docker.com/config/pruning/), and [managing file system storage for Mac](https://docs.docker.com/desktop/mac/space/).
+- The `entrypoint.sh` runs on startup, and shouldn't need to be edited except for rare instances.
