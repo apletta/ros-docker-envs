@@ -20,7 +20,10 @@ To interact with GUI applications, visit the following link in your web browser:
 1. Clone this repository to the same file hierarchy as the other files/directories you would like to use it with (i.e. should be in the same file tree location as the root of files you would like to work with).
 - This image uses volumes so the changes you make while in the container will persist outside the container and after you close the docker image. Changes made outside the container will also appear in the container. The container will be able to access all children files/directories as the location where the repository is cloned (from inside the container); use wisely! For more information, see the [Docker volumes documentation](https://docs.docker.com/storage/volumes/).
 2. Enter top level of this repository.
-3. Build the Docker services. This will take a little while the first time you run it, but subsequent executions should be much faster. 
+```
+cd ros-docker-envs
+```
+4. Build the Docker services. This will take a little while the first time you run it, but subsequent executions should be much faster. 
 ```
 docker-compose build
 ```
