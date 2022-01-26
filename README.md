@@ -4,11 +4,15 @@
 This repository contains a ROS Noetic Docker environment built on Ubuntu 20.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment. The container will initialize at that file tree location, in the ROS Docker environment. GUI applications can be visualized at http://localhost:8080/vnc_auto.html.
 
 ### Initial Setup
-1. Install Docker, if not already. Check with 
+- Note that you may need to do a little googling for host setup, but once in the container the environment management should be streamlined.
+1. Install Docker.
+- [Mac/Windows: Docker Desktop](https://docs.docker.com/desktop/)
+- [Linux: Docker Engine](https://docs.docker.com/engine/install/#server)
+2. Install [Docker Compose](https://docs.docker.com/compose/install/), then check with:
 ```
 docker-compose -v
 ```
-2. Start up Docker daemon (e.g. run Docker Desktop application).
+3. For Mac/Windows, start up the Docker daemon (e.g. run Docker Desktop application).
 
 To interact with GUI applications, visit the following link in your web browser: http://localhost:8080/vnc_auto.html
 
