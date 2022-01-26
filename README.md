@@ -6,8 +6,8 @@ This repository contains a ROS Noetic Docker environment built on Ubuntu 20.04. 
 ### Initial Setup
 - Note that you may need to do a little googling for host setup, but once in the container the environment management should be streamlined.
 1. Install Docker.
-- [Mac/Windows: Docker Desktop](https://docs.docker.com/desktop/)
-- [Linux: Docker Engine](https://docs.docker.com/engine/install/#server)
+- For Mac/Windows, [Docker Desktop](https://docs.docker.com/desktop/)
+- For Linux, [Docker Engine](https://docs.docker.com/engine/install/#server)
 2. Install [Docker Compose](https://docs.docker.com/compose/install/), then check with:
 ```
 docker-compose -v
