@@ -35,7 +35,7 @@ docker-compose up -d
 ```
 docker-compose exec rosenv zsh
 ```
-6. Do work in container. When finished, enter `exit` to leave the container. Note that all "file" work will persist, but package installations will not (i.e. you can still install packages in the container, but they will not remain between down/up cycles. To make the packages persist, add them to the dockerfile and re-build).
+6. Do work in container. When finished, enter `exit` to leave the container. Note that all "file" work will persist because of the mounted volumes, but package installations will not (i.e. you can still install packages in the container, but they will not remain between down/up cycles. To make the packages persist, add them to the dockerfile and re-build).
 - GUI applications can be visualized in a web browser page. For example, try running `rosrun rviz rviz` and then navigate to http://localhost:8080/vnc_auto.html (remember to have the ros master node running! i.e. run `roscore` in a separate terminal window; the [tmux](https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/) tool, already installed in the container, can be helpful for managing terminal windows)
 8. When done working, bring the services down (this is technically optional but can be less resource intensive for your host machine).
 ```
