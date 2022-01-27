@@ -1,7 +1,8 @@
 # ros-docker-envs
 
 ### Overview
-This repository contains a ROS Noetic Docker environment built on Ubuntu 20.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment (i.e. as a "sibling" directory, or alternatively a "parent", but NOT a "child"). The container will initialize at that file tree location, in the ROS Docker environment. GUI applications can be visualized at http://localhost:8080/vnc_auto.html.
+This repository contains a ROS Melodic Docker environment built on Ubuntu 18.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment (i.e. as a "sibling" directory, or alternatively a "parent", but NOT a "child"). The container will initialize at that file tree location, in the ROS Docker environment. GUI applications can be visualized at http://localhost:8080/vnc_auto.html.
+- To change ROS versions, simply change the first line and associated environment variable (i.e. `$ROSDISTRO`) in the `rosenv.dockerfile`.
 
 ### Initial Setup
 - Note that you may need to do a little googling for host setup, but once in the container the environment management should be streamlined.
