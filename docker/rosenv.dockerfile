@@ -1,6 +1,6 @@
 # Initialize base image
-FROM osrf/ros:noetic-desktop-full
-ARG ROSDISTRO=noetic
+FROM osrf/ros:melodic-desktop-full
+ARG ROSDISTRO=melodic
 ENV ROSDISTRO=$ROSDISTRO
 
 # Set working directory
