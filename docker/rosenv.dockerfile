@@ -41,8 +41,19 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.bashrc
 # ---------------------------------
 
 # Install any other system packages, including for ROS
-# RUN apt-get install -y\
+RUN apt-get install -y\
+  cmake \
+  build-essential \
+  xorg-dev \
+  libgl1-mesa-dev \
+  mesa-utils \
+  g++-5 \
+  gcc-5
 
+# Reset gcc and g++ symlinks to use version 5
+WORKDIR /usr/bin
+RUN ln -s -f gcc-5 gcc \
+  && ln -s -f g++-5 g++
 
 # Setup entrypoint
 COPY docker/entrypoint.sh /
