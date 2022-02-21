@@ -10,19 +10,19 @@ General purpose docker environment with minimal packages to support GUI visualiz
   4. [Other Notes/Tips](#other-notestips)
 
 ## Overview
-This repository contains a ROS Melodic Docker environment built on Ubuntu 18.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment (i.e. as a "sibling" directory, or alternatively a "parent", but NOT a "child"). The container will initialize at that file tree location, in the ROS Docker environment. GUI applications can be visualized using a VNC client pointed to `localhost:5902`. For example, the image below has this repository (`ros-docker-envs`) cloned to the same location as another git repository (`MRSD-Project1`) that holds the code that will be run from inside the container:
+This repository contains a ROS Melodic Docker environment built on Ubuntu 18.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment (i.e. as a "sibling" directory, or alternatively a "parent", but NOT a "child"). The container will initialize at that file tree location, in the ROS Docker environment. For example, the image below has this repository (`ros-docker-envs`) cloned to the same location as another git repository (`MRSD-Project1`) that holds the code that will be run from inside the container. GUI applications can be visualized using a VNC client pointed to `localhost:5902`.
 
 <img src="docker/tree.png" height="200">
 
 
 ## High-Level Notes
+- This setup uses VNC to visualize GUI windows generated from the Docker container (e.g. Rviz, PlotJuggler, RQt, etc.). Note that the VNC client must be connected before GUI windows can be generated. The VNC client uses [fluxbox](https://wiki.debian.org/FluxBox) for rudimentary window management. To do so, follow the instructions below for [GUI Visualization](#gui-visualization). Note that the GUI service (e.g. VNC client) must be running **_before_** the container can generate the GUI window. Running GUI applications in the container without the VNC client running will generate an error, because the GUI window will not find a display to connect to.
 - This image uses volumes so the changes you make while in the container will persist outside the container and after you close the docker image. Changes made outside the container will also appear in the container. The container will be able to access all children files/directories as the location where the repository is cloned (from inside the container); use wisely! For more information, see the [Docker volumes documentation](https://docs.docker.com/storage/volumes/).
   - Recommended practice: 
   - 1. Start up a coding environment on local host OS (e.g. VScode).
   - 2. Enter the docker container.
   - 3. Edit files on host coding environment, build/run the files you're working with in the docker container.
 - Perform all git operations _outside_ of the container (i.e. on local host OS, in separate terminal outside the container). While in-container git use is possible, compatibility can vary significantly depending on OS and architecture. For example, well-supported environments are Unix-based machines with `x86_64` architecture, but Windows machines can have problems copying git credentials to the container and `ARM` architectures can have problems with `openssh-client` configuration.
-- This setup uses VNC to visualize GUI windows generated from the Docker container (e.g. Rviz, PlotJuggler, RQt, etc.). Note that the VNC client must be connected before GUI windows can be generated. The VNC client uses [fluxbox](https://wiki.debian.org/FluxBox) for rudimentary window management. To do so, follow the instructions below for [GUI Visualization](#gui-visualization)
 - To change ROS versions, simply change the first line in the `rosenv.dockerfile` to the desired ROS docker image.
 
 
