@@ -10,7 +10,9 @@ General purpose docker environment with minimal packages to support GUI visualiz
   4. [Other Notes/Tips](#other-notestips)
 
 ## Overview
-This repository contains a ROS Melodic Docker environment built on Ubuntu 18.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment (i.e. as a "sibling" directory, or alternatively a "parent", but NOT a "child"). The container will initialize at that file tree location, in the ROS Docker environment. GUI applications can be visualized using a VNC client pointed to `localhost:5902`.
+This repository contains a ROS Melodic Docker environment built on Ubuntu 18.04. Intended as an "environment wrapper"; the repository should be cloned to the same file tree location as the files/directories that will be used with the environment (i.e. as a "sibling" directory, or alternatively a "parent", but NOT a "child"). The container will initialize at that file tree location, in the ROS Docker environment. GUI applications can be visualized using a VNC client pointed to `localhost:5902`. For example, the image below has this repository (`ros-docker-envs`) cloned to the same location as another git repository (`MRSD-Project1`) that holds the code that will be run from inside the container:
+
+<img src="docker/tree.png" height="200">
 
 
 ## High-Level Notes
