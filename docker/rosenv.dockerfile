@@ -28,16 +28,16 @@ RUN apt-get install -y x11vnc xvfb fluxbox
 RUN mkdir ~/.vnc
 
 # Start the VNC server
-RUN echo "export DISPLAY=:20" >> ~/.zshrc
-RUN echo "export DISPLAY=:20" >> ~/.bashrc
+RUN echo "export DISPLAY=:20" >> ~/.zshrc \
+  && echo "export DISPLAY=:20" >> ~/.bashrc
 
 # Always try to start windows management in background to be ready for VNC
-RUN echo "( fluxbox > /dev/null 2>&1 & )" >> ~/.zshrc
-RUN echo "( fluxbox > /dev/null 2>&1 & )" >> ~/.bashrc
+RUN echo "( fluxbox > /dev/null 2>&1 & )" >> ~/.zshrc \
+  && echo "( fluxbox > /dev/null 2>&1 & )" >> ~/.bashrc
 
 # Clean up unnecessary output files
-RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc
-RUN echo "rm -f /root/workdir/nohup.out" >> ~/.bashrc
+RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
+  && echo "rm -f /root/workdir/nohup.out" >> ~/.bashrc
 # ---------------------------------
 
 # Install any other system packages, including for ROS
