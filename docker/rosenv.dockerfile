@@ -1,5 +1,5 @@
 # Initialize base image
-FROM osrf/ros:melodic-desktop-full as ros_base
+FROM ros:melodic as ros_base
 
 # Zsh theme, and make entrypoint executable
 COPY docker/.p10k.zsh /root/
