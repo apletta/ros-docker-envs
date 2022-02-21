@@ -24,7 +24,10 @@ RUN apt-get update && apt-get install -y \
 
 # ------- VNC GUI Configuration -------
 # Install vnc, xvfb for VNC configuration, fluxbox for window managment
-RUN apt-get install -y x11vnc xvfb fluxbox
+RUN apt-get update && apt-get install -y \
+  x11vnc \
+  xvfb \
+  fluxbox
 RUN mkdir ~/.vnc
 
 # Start the VNC server
