@@ -45,8 +45,8 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
 
 # Install any other system packages, including for ROS
 RUN apt-get update && apt-get install -y \
-  ros-$ROS_DISTRO-rviz
-
+  ros-$ROS_DISTRO-rviz \
+  ros-$ROS_DISTRO-rqt
 
 # Setup entrypoint
 COPY docker/entrypoint.sh /
