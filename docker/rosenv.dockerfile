@@ -1,5 +1,5 @@
 # Initialize base image
-FROM ros:melodic as ros_base
+FROM ros:galactic as ros_base
 
 # Zsh theme, and make entrypoint executable
 COPY docker/.p10k.zsh /root/
@@ -45,8 +45,12 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
 
 # Install any other system packages, including for ROS
 RUN apt-get update && apt-get install -y \
-  ros-$ROS_DISTRO-rviz
+  ros-$ROS_DISTRO-rviz2 \ 
+  ros-$ROS_DISTRO-turtlesim \
+  ros-$ROS_DISTRO-rosbridge-suite
 
+RUN echo "export ROS_DOMAIN_ID=69" >> ~/.zshrc \
+  && echo "export ROS_DOMAIN_ID=69" >> ~/.bashrc
 
 # Setup entrypoint
 COPY docker/entrypoint.sh /

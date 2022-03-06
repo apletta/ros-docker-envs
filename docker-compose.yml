@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  rosenv:
+  server:
     build:
       context: ./
       dockerfile: ./docker/rosenv.dockerfile
@@ -9,5 +9,15 @@ services:
       - ../:/root/workdir
     ports:
       - 5902:5900 # <external port>:<container port>
+      - 9090:9090 # websocket server
+    tty: true # use terminal, i.e. the `-t` flag
+    stdin_open: true # allow terminal input, i.e. the `-i` flag
+  client:
+    build:
+      context: ./
+      dockerfile: ./docker/rosenv.dockerfile
+      network: host
+    ports:
+      - 5903:5900 # <external port>:<container port>
     tty: true # use terminal, i.e. the `-t` flag
     stdin_open: true # allow terminal input, i.e. the `-i` flag
