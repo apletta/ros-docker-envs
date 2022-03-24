@@ -47,7 +47,9 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
 RUN apt-get update && apt-get install -y \
   ros-$ROS_DISTRO-rviz \
   ros-$ROS_DISTRO-rqt \
-  ros-$ROS_DISTRO-rqt-graph
+  ros-$ROS_DISTRO-rqt-graph \
+  ros-$ROS_DISTRO-cv-bridge \
+  ros-$ROS_DISTRO-hector-trajectory-server
 
 # Setup entrypoint
 COPY docker/entrypoint.sh /
