@@ -8,6 +8,6 @@ services:
     volumes:
       - ../:/root/workdir
     ports:
-      - 5902:5900 # <external port>:<container port>
+      - 5900:5900 # <external port>:<container port>
     tty: true # use terminal, i.e. the `-t` flag
     stdin_open: true # allow terminal input, i.e. the `-i` flag

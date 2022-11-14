@@ -43,6 +43,26 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
   && echo "rm -f /root/workdir/nohup.out" >> ~/.bashrc
 # ---------------------------------
 
+# Install OpenCV
+WORKDIR /root/
+RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.4.0.zip \
+  && unzip opencv.zip \
+  && cd opencv-4.4.0 \
+  && mkdir -p build && cd build \
+  && cmake .. \
+  && make \
+  && make install
+
+# Install Pangolin
+WORKDIR /root/
+RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git \
+  && cd Pangolin \
+  && ./scripts/install_prerequisites.sh recommended \
+  && mkdir -p build && cd build \
+  && cmake .. \
+  && make \
+  && make install
+
 # Install any other system packages, including for ROS
 RUN apt-get update && apt-get install -y \
   ros-$ROS_DISTRO-rviz
