@@ -46,6 +46,7 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
 # Install OpenCV
 WORKDIR /root/
 RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.4.0.zip \
+  && apt install unzip \
   && unzip opencv.zip \
   && cd opencv-4.4.0 \
   && mkdir -p build && cd build \
@@ -55,9 +56,9 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.4.0.zip \
 
 # Install Pangolin
 WORKDIR /root/
-RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git \
-  && cd Pangolin \
-  && ./scripts/install_prerequisites.sh recommended \
+RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
+WORKDIR /root/Pangolin
+RUN yes | ./scripts/install_prerequisites.sh recommended \
   && mkdir -p build && cd build \
   && cmake .. \
   && make \
