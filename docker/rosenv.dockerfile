@@ -1,6 +1,7 @@
 # Initialize base image
 FROM ros:melodic as ros_base
 
+# -------- Base Environment -------
 # Zsh theme, and make entrypoint executable
 COPY docker/.p10k.zsh /root/
 ENV TERM=xterm-256color
@@ -21,6 +22,7 @@ RUN apt-get update && apt-get install -y \
   tmux \
   iputils-ping \
   tree
+# ---------------------------------
 
 # ------- VNC GUI Configuration -------
 # Install vnc, xvfb for VNC configuration, fluxbox for window managment
@@ -43,6 +45,7 @@ RUN echo "rm -f /root/workdir/nohup.out" >> ~/.zshrc \
   && echo "rm -f /root/workdir/nohup.out" >> ~/.bashrc
 # ---------------------------------
 
+# ----- ORB-SLAM3 Dependencies ----
 # Install OpenCV
 WORKDIR /root/
 RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.4.0.zip \
@@ -63,11 +66,18 @@ RUN yes | ./scripts/install_prerequisites.sh recommended \
   && cmake .. \
   && make \
   && make install
+# ---------------------------------
+
+# ------ Project Dependencies -----
+# Post-processing pipeline dependencies
+RUN yes | apt install python3-pip \
+  && pip3 install matplotlib \
+  && yes | apt install python3-tk
 
 # Install any other system packages, including for ROS
 RUN apt-get update && apt-get install -y \
   ros-$ROS_DISTRO-rviz
-
+# ---------------------------------
 
 # Setup entrypoint
 COPY docker/entrypoint.sh /
