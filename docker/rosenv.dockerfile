@@ -57,6 +57,12 @@ RUN wget -O opencv.zip https://github.com/opencv/opencv/archive/4.4.0.zip \
   && make \
   && make install
 
+# apt install qtbase5-dev
+# apt install qtdeclarative5-dev
+# mkdir Release && cd Release
+# cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_GTK=ON -D WITH_OPENGL=ON ..
+# 
+
 # Install Pangolin
 WORKDIR /root/
 RUN git clone --recursive https://github.com/stevenlovegrove/Pangolin.git
